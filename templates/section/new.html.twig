@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Section
+{% endblock %}
+
+{% block body %}
+	<section class="ftco-section bg-light" id="skills-section">
+		<div class="container">
+			<h1>Create new Section</h1>
+
+			{{ include('section/_form.html.twig') }}
+
+			<a href="{{ path('section_index') }}">back to list</a>
+		</div>
+	</section>
+{% endblock %}

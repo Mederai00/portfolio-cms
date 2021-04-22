@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Section index
+{% endblock %}
+
+{% block body %}
+
+
+	<section class="ftco-section bg-light" id="skills-section">
+		<div class="container">
+			<h1>Section index</h1>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Titre</th>
+						<th>SousTitre</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for section in sections %}
+						<tr>
+							<td>{{ section.id }}</td>
+							<td>{{ section.titre }}</td>
+							<td>{{ section.sousTitre }}</td>
+							<td>
+								<a href="{{ path('section_show', {'id': section.id}) }}">show</a>
+								<a href="{{ path('section_edit', {'id': section.id}) }}">edit</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="4">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			<a href="{{ path('section_new') }}">Create new</a>
+		</div>
+	</section>
+
+{% endblock %}
