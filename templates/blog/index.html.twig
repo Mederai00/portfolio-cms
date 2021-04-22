@@ -26,8 +26,8 @@
 							<td>{{ blog.contenu }}</td>
 							<td>{{ blog.banner }}</td>
 							<td>
-								<a href="{{ path('blog_show', {'id': blog.id}) }}">show</a>
-								<a href="{{ path('blog_edit', {'id': blog.id}) }}">edit</a>
+								<a href="{{ path('blog_show', {'id': blog.id}) }}" class=" btn btn-secondary btn-sm">show</a>
+								<a href="{{ path('blog_edit', {'id': blog.id}) }}" class=" btn btn-outline btn-dark btn-sm">edit</a>
 							</td>
 						</tr>
 					{% else %}
@@ -38,7 +38,7 @@
 				</tbody>
 			</table>
 
-			<a href="{{ path('blog_new') }}">Create new</a>
+			<a href="{{ path('blog_new') }}" class=" btn btn-outline btn-primary mt-2">Create new</a>
 		</div>
 	</section>
 {% endblock %}

@@ -28,9 +28,15 @@ class Blog
     private $contenu;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string")
      */
     private $banner;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="blogs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
 
     /**

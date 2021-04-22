@@ -16,7 +16,7 @@ class HomeController extends AbstractController
     {
         $sections = $this->getDoctrine()->getRepository(Section::class)->findAll();
         return $this->render('home.html.twig',[
-            'sections' => $sections,
+         //   'sections' => $sections,
             'user' => $this->getUser()]
         );
     }
@@ -25,9 +25,13 @@ class HomeController extends AbstractController
      */
     public function alternatePage(): Response
     {
-        //$sections = $this->getDoctrine()->getRepository(Section::class)->findAll();
-        return $this->render('alternate.html.twig',[
-            'user' => $this->getUser()]
-        );
+        return $this->render('alternate.html.twig');
+    }
+    /**
+     * @Route("/single", name="single_blog", methods={"GET","HEAD"})
+     */
+    public function blogPage(): Response
+    {
+        return $this->render('single.html.twig');
     }
 }

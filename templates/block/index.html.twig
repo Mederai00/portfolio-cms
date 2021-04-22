@@ -32,8 +32,8 @@
 							<td>{{ block.poucentage }}</td>
 							<td>{{ block.type }}</td>
 							<td>
-								<a href="{{ path('block_show', {'id': block.id}) }}">show</a>
-								<a href="{{ path('block_edit', {'id': block.id}) }}">edit</a>
+								<a href="{{ path('block_show', {'id': block.id}) }}" class=" btn btn-secondary">show</a>
+								<a href="{{ path('block_edit', {'id': block.id}) }}" class=" btn btn-dark btn-sm">edit</a>
 							</td>
 						</tr>
 					{% else %}
@@ -44,7 +44,7 @@
 				</tbody>
 			</table>
 
-			<a href="{{ path('block_new') }}">Create new</a>
+			<a href="{{ path('block_new') }}" class=" btn btn-outline btn-primary mt-2">Create new</a>
 		</div>
 	</section>
 {% endblock %}

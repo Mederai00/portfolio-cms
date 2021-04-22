@@ -6,6 +6,7 @@ use App\Entity\Blog;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class BlogType extends AbstractType
 {
@@ -13,7 +14,7 @@ class BlogType extends AbstractType
     {
         $builder
             ->add('date')
-            ->add('contenu')
+            ->add('contenu', CKEditorType::class)
             ->add('banner')
             ->add('user')
         ;

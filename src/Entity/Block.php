@@ -18,12 +18,12 @@ class Block
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string")
      */
     private $titre;
     
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $image;
     
@@ -33,17 +33,17 @@ class Block
     private $description;
     
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $button;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="float", nullable=true)
      */
     private $poucentage;
     
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string")
      */
     private $type;
 

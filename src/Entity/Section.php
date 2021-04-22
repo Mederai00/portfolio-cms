@@ -19,11 +19,11 @@ class Section
      */
     private $id;
     /**
-     * @ORM\Column(type="text", length=100)
+     * @ORM\Column(type="string", length=100)
      */
     private $titre;
     /**
-     * @ORM\Column(type="text", length=100, nullable = true)
+     * @ORM\Column(type="string", length=100, nullable = true)
      */
     private $sousTitre;
 
