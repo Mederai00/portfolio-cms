@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Block;
 use App\Form\BlockType;
 use App\Repository\BlockRepository;
+use PhpParser\Node\Expr\Isset_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,7 +35,19 @@ class BlockController extends AbstractController
         $form = $this->createForm(BlockType::class, $block);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
+            $file = $request->files->get('block')['img'];
+            if(isset($file)){
+                $filename = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move(
+                    $this->getParameter('uploads_directory'),
+                    $filename
+                );
+    
+                $block->setImage($filename);
+            }
+            
+            $block->setType($request->get('type'));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($block);
             $entityManager->flush();
@@ -66,7 +79,19 @@ class BlockController extends AbstractController
         $form = $this->createForm(BlockType::class, $block);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
+            $file = $request->files->get('block')['img'];
+            if(isset($file)){
+                $filename = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move(
+                    $this->getParameter('uploads_directory'),
+                    $filename
+                );
+    
+                $block->setImage($filename);
+            }
+            
+            $block->setType($request->get('type'));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('block_index');

@@ -2,7 +2,8 @@
 namespace App\Controller;
 
 use App\Entity\Section;
-
+use App\Entity\Block;
+use App\Entity\Blog;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,23 +16,26 @@ class HomeController extends AbstractController
     public function goHome(): Response
     {
         $sections = $this->getDoctrine()->getRepository(Section::class)->findAll();
+        $blocks = $this->getDoctrine()->getRepository(Block::class)->findAll();
+        $blogs = $this->getDoctrine()->getRepository(Blog::class)->findAll();
+
         return $this->render('home.html.twig',[
-         //   'sections' => $sections,
+            'sections' => $sections,
+            'blocks' => $blocks,
+            'blogs' => $blogs,
             'user' => $this->getUser()]
         );
     }
+    
     /**
-     * @Route("/alternate", name="alternate_page", methods={"GET","HEAD"})
+     * @Route("/single/{id}", name="single_blog", methods={"GET","HEAD"})
      */
-    public function alternatePage(): Response
+    public function blogPage(Blog $blog): Response
     {
-        return $this->render('alternate.html.twig');
+        return $this->render('single.html.twig', [
+            'blog' => $blog,
+        ]);
     }
-    /**
-     * @Route("/single", name="single_blog", methods={"GET","HEAD"})
-     */
-    public function blogPage(): Response
-    {
-        return $this->render('single.html.twig');
-    }
+
+    
 }

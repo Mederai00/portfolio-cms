@@ -24,6 +24,37 @@
 					</tr>
 				</tbody>
 			</table>
+			<h1>
+				Blocks
+			</h1>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Id</th>
+						{% for block in blocks %}
+							<td>{{ block.id }}</td>
+						{% endfor %}
+					</tr>
+					<tr>
+						<th>Titre</th>
+						{% for block in blocks %}
+							<td>{{ block.titre }}</td>
+						{% endfor %}
+					</tr>
+					<tr>
+						<th>Description</th>
+						{% for block in blocks %}
+							<td>{{ block.description }}</td>
+						{% endfor %}
+					</tr>
+					<tr>
+						<th>Button</th>
+						{% for block in blocks %}
+							<td>{{ block.button }}</td>
+						{% endfor %}
+					</tr>
+				</tbody>
+			</table>
 
 			<a href="{{ path('section_index') }}">back to list</a>
 

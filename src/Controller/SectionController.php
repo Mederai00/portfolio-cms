@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Section;
+use App\Entity\Block;
 use App\Form\SectionType;
 use App\Repository\SectionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 /**
  * @Route("/section")
@@ -53,8 +55,10 @@ class SectionController extends AbstractController
      */
     public function show(Section $section): Response
     {
+        $blocks = $this->getDoctrine()->getRepository(Block::class)->findBy(['section' => $section]);
         return $this->render('section/show.html.twig', [
             'section' => $section,
+            'blocks' => $blocks,
         ]);
     }
 

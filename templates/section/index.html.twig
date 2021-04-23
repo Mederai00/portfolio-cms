@@ -10,7 +10,7 @@
 		<div class="container">
 			<h1>Section index</h1>
 
-			<table class="table">
+			<table class="table" id="dtb1">
 				<thead>
 					<tr>
 						<th>Id</th>
@@ -41,5 +41,10 @@
 			<a href="{{ path('section_new') }}" class=" btn btn-outline btn-primary mt-2">Create new</a>
 		</div>
 	</section>
+	<script>
+		$(document).ready(function () {
+$('#dtb1').DataTable();
+});
+	</script>
 
 {% endblock %}

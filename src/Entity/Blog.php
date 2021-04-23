@@ -38,6 +38,11 @@ class Blog
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
 
     /**
      * @return mixed
@@ -118,6 +123,18 @@ class Blog
     public function __toString()
     {
         return $this->getId();
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
     }
 
 

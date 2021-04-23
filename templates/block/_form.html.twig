@@ -2,9 +2,12 @@
 <div class="form-group">
 	{{ form_label(form.titre) }}
 	{{ form_widget(form.titre, { 'attr': {'class': 'form-control'} }) }}
-
-	{{ form_label(form.image) }}
-	{{ form_widget(form.image, { 'attr': {'class': 'form-control'} }) }}
+	<br>
+	{{ form_label(form.img) }}
+	<br>
+	{{ form_widget(form.img, { 'attr': {'class': '.form-control-file'} }) }}
+	<br>
+	<br>
 
 	{{ form_label(form.description) }}
 	{{ form_widget(form.description, { 'attr': {'class': 'form-control'} }) }}
@@ -16,12 +19,21 @@
 	{{ form_widget(form.poucentage, { 'attr': {'class': 'form-control'} }) }}
 
 	{{ form_label(form.type) }}
-	{{ form_widget(form.type, { 'attr': {'class': 'form-control'} }) }}
+	<select name="type" id="block_type" class="form-control" required>
+		<option value disabled selected>Selectionner</option>
+		<option value="slider">Slider</option>
+		<option value="about">About</option>
+		<option value="skill">Skill</option>
+		<option value="projet">Projet</option>
+		<option value="service">Service</option>
+		<option value="actualité">Actualité</option>
+		<option value="contact">Contact</option>
+	</select>
+
 
 	{{ form_label(form.section) }}
 	{{ form_widget(form.section, { 'attr': {'class': 'form-control'} }) }}
 
 	<button class="btn btn-primary mt-2">{{ button_label|default('Save') }}</button>
 </div>
-
-{{ form_end(form) }}
+{{ form_end(form, {'render_rest': false}) }}

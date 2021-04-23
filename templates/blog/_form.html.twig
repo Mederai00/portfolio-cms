@@ -2,6 +2,12 @@
 <div class="form-group">
 	{{ form_label(form.date) }}
 	{{ form_widget(form.date, { 'attr': {'class': 'form-control'} }) }}
+	<br>
+	{{ form_label(form.img) }}
+	<br>
+	{{ form_widget(form.img, { 'attr': {'class': '.form-control-file'} }) }}
+	<br>
+	<br>
 
 	{{ form_label(form.contenu) }}
 	{{ form_widget(form.contenu, { 'attr': {'class': 'form-control'} }) }}
