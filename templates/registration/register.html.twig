@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+	{% include 'home-nav.html.twig' %}
 	<section class="ftco-section bg-light" id="skills-section">
 		<div class="container">
 			{% for flashError in app.flashes('verify_email_error') %}

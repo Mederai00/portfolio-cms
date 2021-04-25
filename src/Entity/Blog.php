@@ -22,15 +22,17 @@ class Blog
      */
     private $date;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $contenu;
-
+    
     /**
      * @ORM\Column(type="string")
      */
-    private $banner;
+    private $titre;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
+
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="blogs")
@@ -42,6 +44,11 @@ class Blog
      * @ORM\Column(type="string", length=255)
      */
     private $image;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled;
 
 
     /**
@@ -79,33 +86,33 @@ class Blog
     /**
      * @return mixed
      */
-    public function getContenu()
+    public function getDescription()
     {
-        return $this->contenu;
+        return $this->description;
     }
 
     /**
-     * @param mixed $contenu
+     * @param mixed $description
      */
-    public function setContenu($contenu): void
+    public function setDescription($description): void
     {
-        $this->contenu = $contenu;
+        $this->description = $description;
     }
 
     /**
      * @return mixed
      */
-    public function getBanner()
+    public function getTitre()
     {
-        return $this->banner;
+        return $this->titre;
     }
 
     /**
-     * @param mixed $banner
+     * @param mixed $titre
      */
-    public function setBanner($banner): void
+    public function setTitre($titre): void
     {
-        $this->banner = $banner;
+        $this->titre = $titre;
     }
 
     public function getUser(): ?User
@@ -133,6 +140,18 @@ class Blog
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
 
         return $this;
     }

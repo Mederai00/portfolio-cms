@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/block")
+ * @Route("/admin/block")
  */
 class BlockController extends AbstractController
 {
@@ -45,9 +45,14 @@ class BlockController extends AbstractController
                 );
     
                 $block->setImage($filename);
+            } else {
+                $filename = '3aaba2b1947a0ae12c06b459359c2d8f.png';
+                $block->setImage($filename);
             }
+
+            $block->setEnabled(true);
+
             
-            $block->setType($request->get('type'));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($block);
             $entityManager->flush();
@@ -89,9 +94,8 @@ class BlockController extends AbstractController
                 );
     
                 $block->setImage($filename);
-            }
+            } 
             
-            $block->setType($request->get('type'));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('block_index');
@@ -101,6 +105,20 @@ class BlockController extends AbstractController
             'block' => $block,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/{id}/disable", name="block_disable", methods={"GET","POST"})
+     */
+    public function disable(Block $block): Response
+    {
+      
+            $block->setEnabled(!$block->getEnabled());
+            
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('block_index');
+    
     }
 
     /**
@@ -116,4 +134,7 @@ class BlockController extends AbstractController
 
         return $this->redirectToRoute('block_index');
     }
+    
+
+    
 }

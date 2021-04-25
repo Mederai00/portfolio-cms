@@ -42,15 +42,16 @@ class Block
      */
     private $poucentage;
     
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $type;
 
     /**
      * @ORM\ManyToOne(targetEntity=Section::class, inversedBy="blocks")
      */
     private $section;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled;
 
     /**
      * @return mixed
@@ -149,22 +150,6 @@ class Block
     }
 
 
-    /**
-     * @return mixed
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param mixed $type
-     */
-    public function setType($type): void
-    {
-        $this->type = $type;
-    }
-
     public function getSection(): ?Section
     {
         return $this->section;
@@ -180,5 +165,17 @@ class Block
     public function __toString()
     {
         return $this->getTitre();
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
+
+        return $this;
     }
 }

@@ -6,6 +6,18 @@
 	{{ form_label(form.sousTitre) }}
 	{{ form_widget(form.sousTitre, { 'attr': {'class': 'form-control'} }) }}
 
+	<label for="section_type"></label>
+	<select name="type" id="section_type" class="form-control" required>
+		<option value disabled selected>Selectionner</option>
+		<option value="slider">Slider</option>
+		<option value="about">About</option>
+		<option value="skills">Skills</option>
+		<option value="projets">Projets</option>
+		<option value="services">Services</option>
+		<option value="blogs">Blogs</option>
+		<option value="contact">Contact</option>
+	</select>
+
 	<button class="btn btn-primary mt-2">{{ button_label|default('Save') }}</button>
 </div>
 

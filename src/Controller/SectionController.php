@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/section")
+ * @Route("/admin/section")
  */
 class SectionController extends AbstractController
 {
@@ -36,7 +36,9 @@ class SectionController extends AbstractController
         $form = $this->createForm(SectionType::class, $section);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() ) {
+            $section->setType($request->get('type'));
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($section);
             $entityManager->flush();

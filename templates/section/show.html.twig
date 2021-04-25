@@ -4,7 +4,8 @@
 {% endblock %}
 
 {% block body %}
-	<section class="ftco-section bg-light" id="skills-section">
+	{% include 'admin-nav.html.twig' %}
+	<section class="ftco-section bg-light">
 		<div class="container">
 			<h1>Section</h1>
 
@@ -24,43 +25,55 @@
 					</tr>
 				</tbody>
 			</table>
+			{{ include('section/_delete_form.html.twig') }}
+			<a href="{{ path('section_edit', {'id': section.id}) }}" class="btn btn-info mt-2">edit</a>
+
+			<a href="{{ path('section_index') }}" class="btn btn-dark mt-2" style="display:block;">back to list</a>
+
+
 			<h1>
 				Blocks
 			</h1>
-			<table class="table">
-				<tbody>
-					<tr>
-						<th>Id</th>
-						{% for block in blocks %}
-							<td>{{ block.id }}</td>
-						{% endfor %}
-					</tr>
+			<table class="table" id="dtb3">
+				<thead>
 					<tr>
 						<th>Titre</th>
-						{% for block in blocks %}
+						<th>Image</th>
+						<th>Section</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for block in blocks %}
+						<tr>
 							<td>{{ block.titre }}</td>
-						{% endfor %}
-					</tr>
-					<tr>
-						<th>Description</th>
-						{% for block in blocks %}
-							<td>{{ block.description }}</td>
-						{% endfor %}
-					</tr>
-					<tr>
-						<th>Button</th>
-						{% for block in blocks %}
-							<td>{{ block.button }}</td>
-						{% endfor %}
-					</tr>
+							<td><img height="100" width="100" src="{{ asset('uploads/') ~ block.image}}" alt="block image"></td>
+							<td>{{ block.section.type }}</td>
+							<td>
+								<a href="{{ path('block_show', {'id': block.id}) }}" class=" btn btn-info btn-sm">show</a>
+								<a href="{{ path('block_edit', {'id': block.id}) }}" class=" btn btn-dark btn-sm">edit</a>
+								<a href="{{ path('block_disable', {'id': block.id}) }}" class=" btn {% if block.enabled %}
+																																																																																																																																																																										btn-danger
+																																																																																																																																																																									{% else %}
+																																																																																																																																																																										btn-success
+																																																																																																																																																																									{% endif %} btn-sm">
+									{% if block.enabled %}
+										disable
+									{% else %}
+										enable
+									{% endif %}
+								</a>
+
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="8">no records found</td>
+						</tr>
+					{% endfor %}
 				</tbody>
 			</table>
 
-			<a href="{{ path('section_index') }}">back to list</a>
-
-			<a href="{{ path('section_edit', {'id': section.id}) }}">edit</a>
-
-			{{ include('section/_delete_form.html.twig') }}
 		</div>
 	</section>
 {% endblock %}

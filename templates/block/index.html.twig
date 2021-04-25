@@ -4,36 +4,42 @@
 {% endblock %}
 
 {% block body %}
-	<section class="ftco-section bg-light" id="skills-section">
+	{% include 'admin-nav.html.twig' %}
+
+	<section class="ftco-section bg-light">
 		<div class="container">
 			<h1>Block index</h1>
 
 			<table class="table" id="dtb3">
 				<thead>
 					<tr>
-						<th>Id</th>
 						<th>Titre</th>
 						<th>Image</th>
-						<th>Description</th>
-						<th>Button</th>
-						<th>Poucentage</th>
-						<th>Type</th>
+						<th>Section</th>
 						<th>actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for block in blocks %}
 						<tr>
-							<td>{{ block.id }}</td>
 							<td>{{ block.titre }}</td>
 							<td><img height="100" width="100" src="{{ asset('uploads/') ~ block.image}}" alt="block image"></td>
-							<td>{{ block.description }}</td>
-							<td>{{ block.button }}</td>
-							<td>{{ block.poucentage }}</td>
-							<td>{{ block.type }}</td>
+							<td>{{ block.section.type }}</td>
 							<td>
-								<a href="{{ path('block_show', {'id': block.id}) }}" class=" btn btn-secondary">show</a>
+								<a href="{{ path('block_show', {'id': block.id}) }}" class=" btn btn-info btn-sm">show</a>
 								<a href="{{ path('block_edit', {'id': block.id}) }}" class=" btn btn-dark btn-sm">edit</a>
+								<a href="{{ path('block_disable', {'id': block.id}) }}" class=" btn {% if block.enabled %}
+																														btn-danger
+																													{% else %}
+																														btn-success
+																													{% endif %} btn-sm">
+									{% if block.enabled %}
+										disable
+									{% else %}
+										enable
+									{% endif %}
+								</a>
+
 							</td>
 						</tr>
 					{% else %}

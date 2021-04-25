@@ -4,15 +4,17 @@
 {% endblock %}
 
 {% block body %}
-	<section class="ftco-section bg-light" id="skills-section">
+	{% include 'admin-nav.html.twig' %}
+	<section class="ftco-section bg-light">
 		<div class="container">
 			<h1>Edit Blog</h1>
 
 			{{ include('blog/_form.html.twig', {'button_label': 'Update'}) }}
 
-			<a href="{{ path('blog_index') }}" class=" btn btn-outline btn-warning mt-2">back to list</a>
 
 			{{ include('blog/_delete_form.html.twig') }}
 		</div>
 	</section>
+	<a href="{{ path('blog_index') }}" class=" btn btn-outline btn-warning mt-2">back to list</a>
+
 {% endblock %}

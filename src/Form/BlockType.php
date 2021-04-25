@@ -24,7 +24,6 @@ class BlockType extends AbstractType
             ->add('description')
             ->add('button')
             ->add('poucentage')
-            ->add('type')
             ->add('section')
         ;
     }

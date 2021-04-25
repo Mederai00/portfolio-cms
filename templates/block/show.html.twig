@@ -4,7 +4,8 @@
 {% endblock %}
 
 {% block body %}
-	<section class="ftco-section bg-light" id="skills-section">
+	{% include 'admin-nav.html.twig' %}
+	<section class="ftco-section bg-light">
 		<div class="container">
 			<h1>Block</h1>
 
@@ -34,10 +35,7 @@
 						<th>Poucentage</th>
 						<td>{{ block.poucentage }}</td>
 					</tr>
-					<tr>
-						<th>Type</th>
-						<td>{{ block.type }}</td>
-					</tr>
+
 				</tbody>
 			</table>
 

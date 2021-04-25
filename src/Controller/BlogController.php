@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/blog")
+ * @Route("/admin/blog")
  */
 class BlogController extends AbstractController
 {
@@ -45,6 +45,9 @@ class BlogController extends AbstractController
     
                 $blog->setImage($filename);
             }
+            $blog->setEnabled(true);
+
+        
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($blog);
             $entityManager->flush();
@@ -96,6 +99,20 @@ class BlogController extends AbstractController
             'blog' => $blog,
             'form' => $form->createView(),
         ]);
+    }
+
+      /**
+     * @Route("/{id}/disable", name="blog_disable", methods={"GET","POST"})
+     */
+    public function disable(Blog $blog): Response
+    {
+      
+            $blog->setEnabled(!$blog->getEnabled());
+            
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('blog_index');
+    
     }
 
     /**

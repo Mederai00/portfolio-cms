@@ -4,18 +4,17 @@
 {% endblock %}
 
 {% block body %}
-
-
-	<section class="ftco-section bg-light" id="skills-section">
+	{% include 'admin-nav.html.twig' %}
+	<section class="ftco-section bg-light">
 		<div class="container">
 			<h1>Section index</h1>
-
 			<table class="table" id="dtb1">
 				<thead>
 					<tr>
 						<th>Id</th>
 						<th>Titre</th>
 						<th>SousTitre</th>
+						<th>Type</th>
 						<th>actions</th>
 					</tr>
 				</thead>
@@ -25,6 +24,7 @@
 							<td>{{ section.id }}</td>
 							<td>{{ section.titre }}</td>
 							<td>{{ section.sousTitre }}</td>
+							<td>{{ section.type }}</td>
 							<td>
 								<a href="{{ path('section_show', {'id': section.id}) }}" class=" btn btn-secondary btn-sm">show</a>
 								<a href="{{ path('section_edit', {'id': section.id}) }}" class=" btn btn-outline btn-dark btn-sm">edit</a>

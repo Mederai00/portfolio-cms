@@ -4,33 +4,40 @@
 {% endblock %}
 
 {% block body %}
-	<section class="ftco-section bg-light" id="skills-section">
+	{% include 'admin-nav.html.twig' %}
+	<section class="ftco-section bg-light">
 		<div class="container">
 			<h1>Blog index</h1>
 
 			<table class="table" id="dtb2">
 				<thead>
 					<tr>
-						<th>Id</th>
 						<th>Date</th>
 						<th>Image</th>
-						<th>Contenu</th>
-						<th>Banner</th>
+						<th>Titre</th>
 						<th>actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for blog in blogs %}
 						<tr>
-							<td>{{ blog.id }}</td>
 							<td>{{ blog.date ? blog.date|date('Y-m-d') : '' }}</td>
 							<td><img height="100" width="100" src="{{ asset('uploads/') ~ blog.image}}" alt="blog image"></td>
-							<td>{{ blog.contenu[0:100] }}
-								...</td>
-							<td>{{ blog.banner }}</td>
+							<td>{{ blog.titre }}</td>
 							<td>
 								<a href="{{ path('blog_show', {'id': blog.id}) }}" class=" btn btn-secondary btn-sm">show</a>
 								<a href="{{ path('blog_edit', {'id': blog.id}) }}" class=" btn btn-outline btn-dark btn-sm">edit</a>
+								<a href="{{ path('blog_disable', {'id': blog.id}) }}" class=" btn {% if blog.enabled %}
+																																																												btn-danger
+																																																											{% else %}
+																																																												btn-success
+																																																											{% endif %} btn-sm">
+									{% if blog.enabled %}
+										disable
+									{% else %}
+										enable
+									{% endif %}
+								</a>
 							</td>
 						</tr>
 					{% else %}

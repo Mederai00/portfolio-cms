@@ -21,8 +21,8 @@ class BlogType extends AbstractType
                 'mapped' => false,
                 'required' => false,
             ])
-            ->add('contenu', CKEditorType::class)
-            ->add('banner')
+            ->add('description', CKEditorType::class)
+            ->add('titre')
             ->add('user')
         ;
     }

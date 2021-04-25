@@ -26,6 +26,15 @@ class HomeController extends AbstractController
             'user' => $this->getUser()]
         );
     }
+
+    /**
+     * @Route("/home", methods={"GET","HEAD"})
+     */
+    public function homealt(): Response
+    {
+        return $this->redirectToRoute('homepage');
+
+    }
     
     /**
      * @Route("/single/{id}", name="single_blog", methods={"GET","HEAD"})
@@ -36,6 +45,17 @@ class HomeController extends AbstractController
             'blog' => $blog,
         ]);
     }
+
+    /**
+     * @Route("/admin", methods={"GET","HEAD"})
+     */
+    public function admin(): Response
+    {
+        return $this->redirectToRoute('section_index');
+
+    }
+
+
 
     
 }

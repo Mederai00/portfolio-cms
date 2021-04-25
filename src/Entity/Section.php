@@ -32,6 +32,11 @@ class Section
      */
     private $blocks;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $type;
+
     public function __construct()
     {
         $this->blocks = new ArrayCollection();
@@ -109,6 +114,18 @@ class Section
         {
             return $this->getTitre();
         }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
     
 
 
