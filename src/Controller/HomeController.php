@@ -4,25 +4,54 @@ namespace App\Controller;
 use App\Entity\Section;
 use App\Entity\Block;
 use App\Entity\Blog;
+use App\Repository\BlockRepository;
+use App\Repository\BlogRepository;
+use App\Repository\SectionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
+    private $sections;
+    private $blocks;
+    private $blogs;
+    private $manager;
+
+    public function __construct(EntityManagerInterface $entityManagerInterface, SectionRepository $sectionRepository,BlockRepository $blockRepository, BlogRepository $blogRepository)
+    {
+        $this->sections = $sectionRepository->findAll();
+        $this->blocks = $blockRepository->findAll();
+        $this->blogs = $blogRepository->findAll();
+        $this->manager = $entityManagerInterface;
+    }
+
      /**
      * @Route("/", name="homepage", methods={"GET","HEAD"})
      */
-    public function goHome(): Response
+    public function goHome(SectionRepository $sectionRepository): Response
     {
-        $sections = $this->getDoctrine()->getRepository(Section::class)->findAll();
-        $blocks = $this->getDoctrine()->getRepository(Block::class)->findAll();
-        $blogs = $this->getDoctrine()->getRepository(Blog::class)->findAll();
+        // $this->sections = $sectionRepository->findBy(['titre'=>'chi 7aja']);
+        // $this->sections = $sectionRepository->findBy(['blocks'=>$testO]);
+        // $id = 12;
+        // $testArrayCollection = new ArrayCollection($sectionRepository->findAll());
+        // $testArrayCollection->filter(function(Section $section) use ($id){
+        //     if(
+        //         $section->getId() == $id
+        //     )
+        //         dump(
+        //             $section
+        //         );
+        // });
+        // dd();
+
 
         return $this->render('home.html.twig',[
-            'sections' => $sections,
-            'blocks' => $blocks,
-            'blogs' => $blogs,
+            'sections' => $this->sections,
+            'blocks' => $this->blocks,
+            'blogs' => $this->blogs,
             'user' => $this->getUser()]
         );
     }

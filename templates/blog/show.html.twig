@@ -21,14 +21,17 @@
 					</tr>
 					<tr>
 						<th>Contenu</th>
-						<td>{{ blog.contenu }}</td>
+						<td></td>
 					</tr>
 					<tr>
 						<th>Banner</th>
-						<td>{{ blog.banner }}</td>
+						<td>{{ blog.titre }}</td>
 					</tr>
 				</tbody>
 			</table>
+			<div>
+				{{ blog.description|raw }}
+			</div>
 
 			<a href="{{ path('blog_index') }}">back to list</a>
 
